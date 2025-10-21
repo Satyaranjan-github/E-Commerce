@@ -17,7 +17,7 @@ app.use(cors());
 
 //Database connection withmongodb
 mongoose.connect(
-  "mongodb+srv://gudu44791:satyadatabase@cluster0.oywqwfa.mongodb.net/e-commerce1"
+  "mongodb+srv:************************************"
 );
 
 //Api creation
@@ -296,3 +296,4 @@ app.listen(port, (error) => {
     console.log("Error occured in api" + error);
   }
 });
+
