@@ -103,9 +103,7 @@ app.post("/addproduct", async (req, res) => {
     new_price: req.body.new_price,
     old_price: req.body.old_price,
   });
-  console.log(product);
   await product.save();
-  console.log("product added successfully");
   res.json({
     success: true,
     name: req.body.name,
@@ -116,7 +114,6 @@ app.post("/addproduct", async (req, res) => {
 //creating api for deleting products
 app.post("/removeproduct", async (req, res) => {
   await Product.findOneAndDelete({ id: req.body.id });
-  console.log("product deleted successfully");
   res.json({
     success: true,
     name: req.body.name,
@@ -127,7 +124,6 @@ app.post("/removeproduct", async (req, res) => {
 
 app.get("/allproducts", async (req, res) => {
   let products = await Product.find({});
-  console.log("All products fetched successfully");
   res.send(products);
 });
 
@@ -224,7 +220,6 @@ app.post('/login', async (req, res) => {
 app.get('/newcollections', async (req, res) => {
   let products = await Product.find({});
   let newcollection = products.slice(1).slice(-8);
-  console.log("NewCollection Fetched");
   res.send(newcollection);
 })
 
@@ -233,7 +228,6 @@ app.get('/newcollections', async (req, res) => {
 app.get('/popularinwomen', async (req, res) => {
   let products = await Product.find({ category: "women" });
   let popular_in_women = products.slice(0, 4)
-  console.log("Popular in women fetched");
   res.send(popular_in_women);
 })
 
@@ -259,8 +253,6 @@ const fetchUser = async (req, res, next) => {
 
 //creating endpoint for adding products in cartdata
 app.post('/addtocart', fetchUser, async (req, res) => {
-  console.log("added", req.body.itemId);
-
   let userData = await Users.findOne({ _id: req.user.id });
   userData.cartData[req.body.itemId] += 1;
   await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
@@ -270,7 +262,6 @@ app.post('/addtocart', fetchUser, async (req, res) => {
 
 //creating endpoint to remove product from cartdata
 app.post('/removefromcart', fetchUser, async (req, res) => {
-  console.log("removed", req.body.itemId);
   let userData = await Users.findOne({ _id: req.user.id });
   if (userData.cartData[req.body.itemId] > 0)
     userData.cartData[req.body.itemId] -= 1;
@@ -281,17 +272,18 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
 
 //creating endpoint to get cartdata 
 app.post('/getcart', fetchUser, async (req, res) => {
-  console.log("GetCart");
   let userData = await Users.findOne({ _id: req.user.id })
   res.json(userData.cartData);
 
 })
 
 
-
 app.listen(port, (error) => {
   if (!error) {
-    console.log("Server is Successfully connected and running on port " + port);
+    console.info(`****************************************************
+🚀 Server is up and running!
+🌐 Visit your app here: http://localhost:${port}
+****************************************************`);
   } else {
     console.log("Error occured in api" + error);
   }
