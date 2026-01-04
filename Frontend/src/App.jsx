@@ -13,7 +13,7 @@ import Shop from "./Pages/Shop";
 import Shopcategory from "./Pages/Shopcategory";
 // import Sidediv from "./Components/Sidediv/Sidediv";
 
-const App = () => {                                         
+const App = () => {
   return (
     <div>
       <BrowserRouter>
@@ -33,15 +33,15 @@ const App = () => {
             path="/kids"
             element={<Shopcategory banner={kids_banner} category="kid" />}
           />
-          <Route path="/product" element={<Product />}>
-            <Route path=":id" element={<Product />} />
+          <Route path="/product/:id" element={<Product />}>
+            <Route element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Loginsignup />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const getDefaultCart = () => {
   return cart;
 };
 
-const ShopProvider = (props) => {
+const ShopProvider = ({ children }) => {
 
   const [all_product, setAll_product] = useState([]);
   const [cart, setCart] = React.useState(getDefaultCart());
@@ -96,7 +96,7 @@ const ShopProvider = (props) => {
 
   return (
     <ShopContext.Provider value={contextValue}>
-      {props.childrens}
+      {children}
     </ShopContext.Provider>
   );
 
