@@ -1,11 +1,10 @@
-import React from "react";
-import Breakcrum from "../Components/Breakcrums/Breakcrum";
-import { ShopContext } from "../Context/ShopContext";
-import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
+import { useParams } from "react-router-dom";
+import Breakcrum from "../Components/Breakcrums/Breakcrum";
 import Descriptionbox from "../Components/Descriptionbox/Descriptionbox";
+import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import Relatedproduct from "../Components/Relatedproduct/Relatedproduct";
+import { ShopContext } from "../Context/ShopContext";
 
 const Product = () => {
   const { all_product } = useContext(ShopContext);

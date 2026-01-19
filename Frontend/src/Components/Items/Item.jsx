@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Item = (props) => {
   return (
     <>
-      <div className="w-full sm:w-[240px] md:w-[260px] lg:w-[280px] overflow-hidden rounded-xl border shadow-sm">
+      <div className="w-[240px] lg:w-[280px] overflow-hidden rounded-xl border shadow-sm mx-auto my-4">
         <Link to={`/product/${props.id}`}>
           {" "}
           <div className="overflow-hidden rounded-lg">
@@ -12,14 +12,7 @@ const Item = (props) => {
           </div>
         </Link>
         <div className="mt-3 px-3 sm:px-2">
-          <p className="
-      text-sm
-      sm:text-[15px]
-      md:text-[16px]
-      font-medium
-      text-gray-700
-      line-clamp-2
-    ">
+          <p className="text-sm sm:text-[15px] md:text-[16px] font-medium text-gray-700 line-clamp-2">
             {props.name}
           </p>
 
