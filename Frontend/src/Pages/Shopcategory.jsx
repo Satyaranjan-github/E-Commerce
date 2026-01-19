@@ -2,24 +2,24 @@ import { useContext } from 'react'
 import dp_icon from '../Assets/dropdown_icon.png'
 import Item from '../Components/Items/Item'
 import { ShopContext } from '../Context/ShopContext'
-import './Shopcategory.css'
-
 
 const Shopcategory = (props) => {
   const { all_product } = useContext(ShopContext);
   return (
     <div className='shopcategory'>
-      <img className="shopcategory-banner" src={props.banner} alt="" />
-      <div className="shopcategory-indexsort">
-        <p>
-          <span>Total </span>{all_product.length} products
+      <img className="block mx-auto my-[30px] w-[82%] xl:my-[20px] xl:w-[90%] md:w-[95%]"
+        src={props.banner} alt="" />
+      <div className="flex items-center justify-between mx-auto w-[90%]">
+        <p className="text-sm xl:text-xs">
+          <span className="text-[20px] font-semibold">Total </span>
+          {all_product.length} products
         </p>
 
-        <div className="shocategory-sort">
+        <div className="flex items-center gap-2 rounded-full border border-[#888] px-5 py-2 xl:px-2 xl:py-1">
           Sort by <img src={dp_icon} alt="" />
         </div>
       </div>
-      <div className='shopcategory-products'>
+      <div className="grid grid-cols-1 sm:grid-cols-2">
         {all_product.map((p, i) => {
           if (props.category === p.category) {
             return (
@@ -39,7 +39,7 @@ const Shopcategory = (props) => {
           }
         })}
       </div>
-      <div className="shopcategory-loadmore">
+      <div className="mx-auto my-[150px] flex items-center justify-center h-[69px] w-[233px]cursor-pointer rounded-full bg-[#ededed] text-[18px] font-medium text-[#787878] xl:my-[100px] xl:h-[60px] xl:w-[200px] xl:text-[16px] md:my-[60px] md:h-[40px] md:w-[150px] md:text-[13px]">
         Explore More
       </div>
     </div>

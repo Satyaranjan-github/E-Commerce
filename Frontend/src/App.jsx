@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import kids_banner from "./Assets/banner_kids.png";
 import men_banner from "./Assets/banner_mens.png";
 import women_banner from "./Assets/banner_women.png";
