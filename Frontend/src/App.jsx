@@ -10,7 +10,6 @@ import Loginsignup from "./Pages/Loginsignup";
 import Product from "./Pages/Product";
 import Shop from "./Pages/Shop";
 import Shopcategory from "./Pages/Shopcategory";
-// import Sidediv from "./Components/Sidediv/Sidediv";
 
 const App = () => {
   return (

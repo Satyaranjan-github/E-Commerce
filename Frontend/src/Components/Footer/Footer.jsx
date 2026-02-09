@@ -1,90 +1,73 @@
+import { Link } from 'react-router-dom'
 import insta from '../../Assets/instagram_icon.png'
 import footer_logo from '../../Assets/logo_big.png'
 import pintesterest from '../../Assets/pintester_icon.png'
 import wp from '../../Assets/whatsapp_icon.png'
 
 const Footer = () => {
+  const getYear = new Date().getFullYear()
+
   return (
-    <div className="
-  w-[65%] h-[40vh] mx-auto mb-[150px]
-  flex flex-col items-center justify-center gap-[50px]
-  px-[140px]
-  bg-[linear-gradient(180deg,#fde1ff,#e1ffea22_60%)]
-  max-[800px]:px-[45px]
-  max-[500px]:px-[45px]
-">
+    <footer className="bg-[#0b0b0b] pt-20 pb-10 px-6 lg:px-20 border-t border-white/5">
+      <div className="max-w-[1440px] mx-auto flex flex-col items-center">
 
-      {/* Logo */}
-      <div className="flex items-center gap-5">
-        <img
-          src={footer_logo}
-          alt=""
-          className="
-        max-[800px]:w-[70px]
-        max-[500px]:w-[60px]
-      "
-        />
-        <p className="
-      text-[#383838] font-bold
-      text-[46px]
-      max-[800px]:mt-[10px] max-[800px]:text-[35px]
-      max-[500px]:mt-[10px] max-[500px]:text-[30px]
-    ">
-          Shoppers
-        </p>
-      </div>
+        {/* Logo Section */}
+        <div className="flex flex-col items-center gap-4 mb-12">
+          <Link to="/" className="flex items-center gap-2 group ">
+            <div className="w-8 h-8 bg-red-600 rounded-sm flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform">
+              <img src={footer_logo} alt="logo" className="-rotate-45 group-hover:rotate-0 transition-transform w-5" />
+            </div>
+            <p className="text-4xl font-black tracking-tighter text-white uppercase italic">
+              Shopper<span className="text-red-600">.</span>
+            </p>
+          </Link>
+          <p className="text-gray-500 text-[10px] uppercase tracking-[0.5em] font-medium">
+            Elevating the Everyday
+          </p>
+        </div>
 
-      {/* Menu */}
-      <ul className="
-    flex list-none text-[#252525]
-    gap-[50px] text-[20px]
-    max-[800px]:gap-[15px] max-[800px]:text-[20px] max-[800px]:font-semibold
-    max-[500px]:gap-[10px] max-[500px]:text-[18px] max-[500px]:font-semibold
-  ">
-        {["Company", "Products", "Offices", "About", "Contacts"].map((item) => (
-          <li key={item} className="cursor-pointer">
-            <a href="#" className="no-underline text-[#252525]">
-              {item}
-            </a>
-          </li>
-        ))}
-      </ul>
+        {/* Navigation Links */}
+        <ul className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12 list-none">
+          {["Company", "Products", "Offices", "About", "Contact"].map((item) => (
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="text-xs uppercase tracking-[0.2em] font-bold text-gray-400 hover:text-red-500 transition-colors duration-300"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      {/* Social Icons */}
-      <div className="
-    flex gap-5
-    max-[800px]:gap-[15px]
-    max-[500px]:gap-[10px]
-  ">
-        {[insta, pintesterest, wp].map((icon, idx) => (
-          <div
-            key={idx}
-            className="
-          p-[10px] pb-[6px]
-          bg-[#fbfbfb] border border-[#ebebeb]
-          max-[800px]:p-[5px] max-[800px]:border-0
-          max-[500px]:w-[20px] max-[500px]:h-[20px] max-[500px]:p-[5px] max-[500px]:pb-[3px] max-[500px]:border-0
-        "
-          >
-            <img src={icon} alt="" />
+        {/* Social Icons */}
+        <div className="flex gap-6 mb-16">
+          {[insta, pintesterest, wp].map((icon, idx) => (
+            <div
+              key={idx}
+              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center cursor-pointer group hover:border-red-600 transition-all duration-300"
+            >
+              <img
+                src={icon}
+                alt="social"
+                className="w-5 h-5 opacity-60 group-hover:opacity-100 invert group-hover:brightness-100 transition-all"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Section: Copyright */}
+        <div className="w-full pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-[10px] uppercase tracking-widest">
+            © {getYear} Shopper Global. All rights reserved.
+          </p>
+          <div className="flex gap-8">
+            <span className="text-gray-600 text-[10px] uppercase tracking-widest cursor-pointer hover:text-white transition-colors">Privacy Policy</span>
+            <span className="text-gray-600 text-[10px] uppercase tracking-widest cursor-pointer hover:text-white transition-colors">Terms of Service</span>
           </div>
-        ))}
+        </div>
       </div>
-
-      {/* Copyright */}
-      <div className="
-    w-full mb-[30px]
-    flex flex-col items-center gap-[30px]
-    text-[#1a1a1a] text-[20px]
-    max-[800px]:gap-[20px] max-[800px]:font-semibold max-[800px]:text-[20px]
-    max-[500px]:gap-[20px] max-[500px]:font-semibold max-[500px]:text-[18px]
-  ">
-        <hr className="
-      w-[80%] h-[3px] rounded-[10px] border-0 bg-[#c7c7c7]
-    " />
-        <p>Copyright © 2023 - All rights reserved</p>
-      </div>
-    </div>
+    </footer>
   )
 }
 

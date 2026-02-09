@@ -57,230 +57,116 @@ const Checkout = () => {
   };
 
   return (
-    <div className="
-  w-full h-screen
-  bg-[#fce3fe]
-  pt-[100px] pb-[200px]
-">
+    <div className="relative min-h-screen bg-[#0b0b0b] text-[#f5f5f5] pt-32 pb-20 px-4 lg:px-20 overflow-hidden">
 
-      <div
-        className="
-      w-[580px] h-[900px] mx-auto
-      bg-white
-      px-[60px] py-[40px]
-      max-[800px]:w-[400px] max-[800px]:h-[800px]
-      max-[500px]:w-[300px] max-[500px]:h-[800px]
-    "
-      >
-        <h1 className="my-[20px]">Checkout</h1>
+      {/* 1. Background Atmosphere */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-red-600/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
-        <p className="text-[#5c5c5c] text-[20px] font-medium">
-          <span className="text-red-500">*</span> Please enter your details
-        </p>
+      <div className="relative z-10 max-w-[1000px] mx-auto">
 
-        <form onSubmit={onSubmit}>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-              </tr>
+        {/* Header Section */}
+        <header className="mb-16 border-l-4 border-red-600 pl-8">
+          <span className="text-red-500 uppercase tracking-[0.5em] text-[10px] font-black block mb-2">
+            Step_03 // Verification
+          </span>
+          <h1 className="text-6xl md:text-8xl font-black italic uppercase leading-none tracking-tighter">
+            Final <br />
+            <span className="text-transparent stroke-text-white">Manifest</span>
+          </h1>
+        </header>
 
-              <tr>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="Phone Number"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="Alternative Phone Number"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-              </tr>
+        {/* Checkout Form Card */}
+        <div className="bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-16 shadow-2xl">
+          <form onSubmit={onSubmit} className="space-y-12">
 
-              <tr>
-                <td>
-                  <input
-                    type="number"
-                    placeholder="House Number"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="Land Mark"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-              </tr>
+            {/* Section 01: Identification */}
+            <div className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-2 bg-red-600 rotate-45" />
+                <h3 className="text-white text-xs font-black uppercase tracking-[0.3em]">Recipient_ID</h3>
+              </div>
 
-              <tr>
-                <td>
-                  <input
-                    type="text"
-                    placeholder="State"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    placeholder="Zip Code"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-              </tr>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input
+                  type="text" placeholder="FIRST NAME" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="LAST NAME" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="PHONE CONTACT" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="SECONDARY CONTACT"
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+              </div>
+            </div>
 
-              <tr>
-                <td className="text-[20px] font-semibold">
-                  Select Payment Method
-                </td>
-                <td>
-                  <select
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[500px]:w-[100px]
-                "
-                  >
-                    <option>Cash On Delivery</option>
-                  </select>
-                </td>
-              </tr>
+            {/* Section 02: Logistics */}
+            <div className="space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="w-2 h-2 bg-red-600 rotate-45" />
+                <h3 className="text-white text-xs font-black uppercase tracking-[0.3em]">Drop_Location</h3>
+              </div>
 
-              <tr>
-                <td className="text-[20px] font-semibold">
-                  Select Delivery Date
-                </td>
-                <td>
-                  <input
-                    type="date"
-                    required
-                    className="
-                  m-[20px_10px]
-                  pt-[15px] pb-[15px] pl-[20px]
-                  border border-[#888] rounded-[5px]
-                  text-[20px] outline-none
-                  max-[800px]:w-[150px]
-                  max-[500px]:w-[100px]
-                "
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <input
+                  type="text" placeholder="HOUSE / UNIT NO." required
+                  className="md:col-span-1 bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="LANDMARK / AREA" required
+                  className="md:col-span-2 bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="STATE / PROVINCE" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="text" placeholder="ZIP CODE" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all placeholder:text-gray-700 uppercase"
+                />
+                <input
+                  type="date" required
+                  className="bg-transparent border-b border-white/10 py-4 text-sm font-mono focus:border-red-600 outline-none transition-all text-gray-500"
+                />
+              </div>
+            </div>
 
-          {/* Button */}
-          <button
-            className="
-          mt-[30px]
-          pt-[15px] pb-[15px]
-          w-[580px]
-          bg-[#ef1c1c] text-white
-          text-[24px]
-          rounded-[5px]
-          cursor-pointer
-          border-0
-          max-[800px]:w-[400px]
-          max-[500px]:w-[300px]
-        "
-          >
-            Place Order
-          </button>
-        </form>
+            {/* Section 03: Transaction Method */}
+            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] text-gray-600 uppercase tracking-widest font-bold">Payment_Strategy</span>
+                <select className="bg-black border border-white/10 px-6 py-3 text-xs font-bold uppercase tracking-widest outline-none focus:border-red-600">
+                  <option>Cash On Delivery</option>
+                </select>
+              </div>
 
-        {/* Result Messages */}
-        <span className="block text-red-500 text-[20px] font-medium mt-2">
-          {result}
-        </span>
-        <span className="block text-red-500 text-[20px] font-medium">
-          {result2}
-        </span>
+              <button className="w-full md:w-[350px] py-6 bg-white text-black font-black uppercase tracking-[0.5em] text-[12px] hover:bg-red-600 hover:text-white transition-all transform hover:-translate-y-1 active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                Place Order
+              </button>
+            </div>
+          </form>
+
+          {/* Result Messaging */}
+          {(result || result2) && (
+            <div className="mt-8 p-4 bg-red-600/10 border border-red-600/20 text-center">
+              <p className="text-red-500 font-mono text-xs uppercase tracking-widest">{result} {result2}</p>
+            </div>
+          )}
+        </div>
       </div>
+
+      <style>
+        {`
+    .stroke-text-white { -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4); }
+  `}
+      </style>
     </div>
   );
 };

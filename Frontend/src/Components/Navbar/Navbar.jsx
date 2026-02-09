@@ -2,7 +2,6 @@ import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import cart_icon from '../../Assets/cart_icon.png'
 import logo from '../../Assets/logo.png'
-import menu_icon from '../../Assets/menu.png'
 import { ShopContext } from '../../Context/ShopContext'
 
 const Navbar = () => {
@@ -11,115 +10,93 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div
-      className="flex items-center justify-around bg-[#f5f5f5]
-                 shadow-[0_2px_4px_rgba(0,0,0,0.1)]
-                 px-[5px] py-[5px]
-                 max-[1280px]:px-[50px] max-[1280px]:py-[12px]
-                 max-[1024px]:px-[20px]
-                 max-[800px]:px-0 max-[800px]:py-[10px]
-                 max-[500px]:py-[8px]"
-    >
-      {/* Logo */}
-      <div className="flex items-center gap-[10px] text-[30px] font-semibold text-black
-                      max-[500px]:scale-[0.8]">
-        <img src={logo} alt="logo" className="max-[1280px]:w-[40px]" />
-        <p className="max-[1280px]:text-[25px]">SHOPPER</p>
-      </div>
+    <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-[#0b0b0b]/80 backdrop-blur-md px-6 py-4 lg:px-20">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between">
 
-      {/* Menu Icon (Mobile) */}
-      <img
-        src={menu_icon}
-        alt="menu"
-        onClick={() => setMenuOpen(!menuOpen)}
-        className={`hidden max-[800px]:block w-[30px] cursor-pointer ml-[20px]
-                    transition-transform duration-300
-                    ${menuOpen ? "rotate-90" : ""}`}
-      />
-
-      {/* Navigation Menu */}
-      <ul
-        className={`flex items-center gap-[50px] list-none
-                    text-[#626262] text-[20px] font-medium
-                    max-[1280px]:gap-[30px]
-                    max-[1024px]:gap-[25px]
-                    max-[800px]:absolute max-[800px]:top-[50px]
-                    max-[800px]:w-full max-[800px]:h-[80px]
-                    max-[800px]:justify-center max-[800px]:bg-white
-                    max-[800px]:hidden
-                    ${menuOpen ? "max-[800px]:flex z-10" : ""}`}
-      >
-        {["Shop", "Men", "Women", "Kids"].map((item) => (
-          <li
-            key={item}
-            className="cursor-pointer font-bold text-[20px]
-                       max-[1280px]:text-[17px]
-                       hover:text-[#001ee1] hover:p-[10px]"
-          >
-            <Link
-              to={item === "Shop" ? "/" : `/${item.toLowerCase()}`}
-              className="no-underline text-inherit"
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {/* Login & Cart */}
-      <div className="flex items-center gap-[45px] max-[1280px]:gap-[20px]">
-        {localStorage.getItem("auth-token") ? (
-          <button
-            onClick={() => {
-              localStorage.removeItem("auth-token");
-              window.location.replace("/");
-            }}
-            className="w-[157px] h-[58px] rounded-full
-                       border border-[#7a7a7a]
-                       bg-[aliceblue] text-black
-                       text-[20px] font-medium cursor-pointer
-                       active:bg-[#7a7a7a] active:text-[#f5f5f5]
-                       max-[1280px]:w-[100px] max-[1280px]:text-[17px]
-                       max-[1024px]:w-[80px] max-[1024px]:h-[30px]
-                       max-[1024px]:text-[15px]"
-          >
-            Logout
-          </button>
-        ) : (
-          <Link to="/login">
-            <button
-              className="w-[157px] h-[58px] rounded-full
-                         border border-[#7a7a7a]
-                         bg-[aliceblue] text-black
-                         text-[20px] font-medium cursor-pointer
-                         active:bg-[#7a7a7a] active:text-[#f5f5f5]
-                         max-[1280px]:w-[100px] max-[1280px]:text-[17px]
-                         max-[1024px]:w-[80px] max-[1024px]:h-[30px]
-                         max-[1024px]:text-[15px]"
-            >
-              Login
-            </button>
-          </Link>
-        )}
-
-        {/* Cart */}
-        <div className="relative">
-          <Link to="/cart">
-            <img src={cart_icon} alt="cart" className="max-[1280px]:w-[30px]" />
-          </Link>
-
-          <div
-            className="absolute left-[30px] -top-[10px]
-                      w-[15px] sm:w-[22px] h-[18px] sm:h-[22px] rounded-full
-                       bg-[#e10000] text-white
-                       text-[14px] font-medium
-                       flex items-center justify-center"
-          >
-            {getTotalcartitems()}
+        {/* Logo Section */}
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 bg-red-600 rounded-sm flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform">
+            <img src={logo} alt="logo" className="-rotate-45 group-hover:rotate-0 transition-transform w-5" />
           </div>
+          <p className="text-xl font-black tracking-tighter text-white uppercase italic">
+            Shopper<span className="text-red-600">.</span>
+          </p>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-10">
+          {["Shop", "Men", "Women", "Kids"].map((item) => (
+            <li key={item} className="relative group">
+              <Link
+                to={item === "Shop" ? "/" : `/${item.toLowerCase()}`}
+                className="text-xs uppercase tracking-[0.2em] font-bold text-gray-400 group-hover:text-white transition-colors"
+              >
+                {item}
+              </Link>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all group-hover:w-full" />
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Actions: Auth & Cart */}
+        <div className="flex items-center gap-6 text-gray-400 text-xs">
+          {localStorage.getItem("auth-token") ? (
+            <button
+              onClick={() => {
+                localStorage.removeItem("auth-token");
+                window.location.replace("/");
+              }}
+              className="hidden sm:block uppercase tracking-widest font-bold border-b border-white/20 pb-1 hover:border-red-600 transition-colors"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="hidden sm:block">
+              <button className="uppercase tracking-widest font-bold border-b border-white/20 pb-1 hover:border-red-600 transition-colors">
+                Login
+              </button>
+            </Link>
+          )}
+
+          {/* Cart Icon */}
+          <Link to="/cart" className="relative hover:scale-110 transition-transform">
+            <img src={cart_icon} alt="cart" className="w-6 invert" />
+            <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-600 text-[10px] font-bold flex items-center justify-center text-white">
+              {getTotalcartitems()}
+            </div>
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex flex-col gap-1.5"
+          >
+            <div className={`w-6 h-[2px] bg-white transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <div className={`w-6 h-[2px] bg-white transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+            <div className={`w-6 h-[2px] bg-white transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`md:hidden absolute top-full left-0 w-full bg-[#0b0b0b] border-b border-white/10 transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-64' : 'max-h-0'}`}>
+        <ul className="flex flex-col items-center py-8 gap-6">
+          {["Shop", "Men", "Women", "Kids"].map((item) => (
+            <li key={item} onClick={() => setMenuOpen(false)}>
+              <Link
+                to={item === "Shop" ? "/" : `/${item.toLowerCase()}`}
+                className="text-sm uppercase tracking-widest font-bold text-gray-300 hover:text-red-500"
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
+          <li className="sm:hidden">
+            <Link to="/login" className="text-xs text-red-500 font-bold uppercase tracking-[0.3em]">Login</Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   )
 }
 

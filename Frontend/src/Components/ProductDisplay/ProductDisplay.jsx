@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import stardull from "../../Assets/star_dull_icon.png";
-import star_icon from "../../Assets/star_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 
 const ProductDisplay = (props) => {
@@ -9,142 +7,106 @@ const ProductDisplay = (props) => {
   const { addToCart } = useContext(ShopContext);
 
   return (
-    <div className="flex mx-[170px]
-                max-[1280px]:mx-[50px]
-                max-[1024px]:mx-[30px]
-                max-[800px]:mx-[10px]
-                max-[500px]:flex-col">
+    <div className="bg-[#050505] text-[#e0e0e0] min-h-screen font-sans selection:bg-red-500/30">
+      <div className="max-w-5xl mx-auto px-6 py-12">
 
-      {/* LEFT SECTION */}
-      <div className="flex gap-[17px]
-                  max-[1280px]:gap-[10px]
-                  max-[1024px]:gap-[5px]
-                  max-[800px]:flex-col-reverse max-[800px]:items-center max-[800px]:gap-0
-                  max-[500px]:flex-row max-[500px]:gap-[5px] max-[500px]:mx-auto">
-
-        {/* Thumbnails */}
-        <div className="flex flex-col gap-[16px]
-                    max-[1280px]:gap-[10px]
-                    max-[800px]:flex-row max-[800px]:gap-[10px]
-                    max-[500px]:flex-col max-[500px]:gap-[8px]">
-          {[1, 2, 3, 4].map((_, i) => (
-            <img
-              key={i}
-              src={product.image}
-              alt=""
-              className="h-[163px]
-                     max-[1280px]:h-[120px]
-                     max-[1024px]:h-[80px]
-                     max-[800px]:h-[70px]
-                     max-[500px]:h-[75px]"
-            />
-          ))}
+        {/* Section Header: Minimal Breadcrumb */}
+        <div className="flex items-center gap-3 mb-12 opacity-40 group cursor-default">
+          <span className="text-[9px] font-mono tracking-[0.4em] uppercase group-hover:text-red-500 transition-colors">Catalog</span>
+          <div className="w-1 h-1 bg-zinc-700 rotate-45" />
+          <span className="text-[9px] font-mono tracking-[0.4em] uppercase group-hover:text-red-500 transition-colors">Tactical_Archive</span>
         </div>
 
-        {/* Main Image */}
-        <div>
-          <img
-            src={product.image}
-            alt=""
-            className="w-[586px] h-[700px]
-                   max-[1280px]:w-auto max-[1280px]:h-[510px]
-                   max-[1024px]:h-[350px]
-                   max-[800px]:h-[300px]
-                   max-[500px]:h-[330px]"
-          />
-        </div>
-      </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-      {/* RIGHT SECTION */}
-      <div className="flex flex-col mx-[70px]
-                  max-[1280px]:mx-[30px]
-                  max-[500px]:mx-[5px]">
-
-        {/* Title */}
-        <h1 className="text-[#3d3d3d] text-[40px] font-bold
-                   max-[1280px]:text-[25px]
-                   max-[1024px]:text-[18px]
-                   max-[500px]:mt-[15px] max-[500px]:text-[20px] max-[500px]:font-semibold">
-          {product.name}
-        </h1>
-
-        {/* Rating */}
-        <div className="flex items-center gap-[5px] my-[13px] text-[#1c1c1c] text-[16px]
-                    max-[1280px]:gap-[3px] max-[1280px]:text-[14px]">
-          <img src={star_icon} className="max-[1024px]:w-[15px]" />
-          <img src={star_icon} className="max-[1024px]:w-[15px]" />
-          <img src={star_icon} className="max-[1024px]:w-[15px]" />
-          <img src={star_icon} className="max-[1024px]:w-[15px]" />
-          <img src={stardull} className="max-[1024px]:w-[15px]" />
-          <p>(20)</p>
-        </div>
-
-        {/* Price */}
-        <div className="flex gap-[30px] my-[40px] text-[30px] font-bold
-                    max-[1280px]:my-[10px] max-[1280px]:text-[20px]">
-          <div className="text-[#818181] line-through">
-            ${product.old_price}
+          {/* LEFT: Metadata Column (Hidden on mobile, 1 col on LG) */}
+          <div className="hidden lg:flex lg:col-span-1 flex-col gap-8 border-r border-white/5 py-4">
+            <div className="[writing-mode:vertical-lr] rotate-180 text-[8px] font-mono tracking-[0.8em] text-zinc-600 uppercase">
+              Spec_Sheet_v7.01
+            </div>
+            <div className="flex flex-col gap-4 items-center">
+              <div className="w-[1px] h-20 bg-gradient-to-b from-red-600 to-transparent" />
+              <span className="text-[10px] font-mono text-red-500 font-bold">01</span>
+            </div>
           </div>
-          <div className="text-[#ff4141]">
-            ${product.new_price}
-          </div>
-        </div>
 
-        {/* Description */}
-        <p className="text-[24px] font-medium
-                  max-[1280px]:text-[18px]
-                  max-[1024px]:text-[14px]">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione
-          tenetur, repellat quaerat amet natus quam aperiam porro laborum neque
-          delectus quia quod magnam non mollitia.
-        </p>
+          {/* CENTER: The Visual Artifact */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative border border-white/10 p-2 group bg-zinc-900/20">
+              {/* Corner Brackets */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-red-600" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-red-600" />
 
-        {/* Sizes */}
-        <div className="mt-[55px]
-                    max-[1280px]:mt-[20px]
-                    max-[1024px]:my-[10px]">
-          <h1 className="text-[#656565] text-[20px] font-semibold">
-            Select size:
-          </h1>
-
-          <div className="flex gap-[20px] my-[30px]
-                      max-[500px]:gap-[10px] max-[500px]:mx-[20px] max-[500px]:my-[10px]">
-            {["S", "M", "L", "XL", "XXL"].map(size => (
-              <div
-                key={size}
-                className="px-[24px] py-[18px] bg-[#d2caca] border border-[#ebebeb] rounded-[3px] cursor-pointer
-                       max-[1280px]:px-[20px] max-[1280px]:py-[14px]
-                       max-[1024px]:px-[16px] max-[1024px]:py-[10px] max-[1024px]:text-[12px]
-                       max-[800px]:px-[2px] max-[800px]:py-[4px]
-                       max-[500px]:px-[16px] max-[500px]:py-[10px] max-[500px]:text-[14px]">
-                {size}
+              <div className="overflow-hidden bg-black aspect-[3/4]">
+                <img
+                  src={product?.image}
+                  alt={product?.name}
+                  className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                />
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Button */}
-        {localStorage.getItem("auth-token") ? (
-          <button
-            onClick={() => addToCart(product.id)}
-            className="w-[586px] py-[20px] px-[40px] bg-[#ff4141] rounded-[5px]
-                   text-white text-[24px] font-medium my-[25px] cursor-pointer
-                   max-[1280px]:w-[450px] max-[1280px]:text-[18px]
-                   max-[1024px]:w-[120px] max-[1024px]:py-[10px] max-[1024px]:my-[10px] max-[1024px]:text-[14px]
-                   max-[800px]:w-[100px]
-                   max-[500px]:w-[130px] max-[500px]:text-[15px]">
-            Add to cart
-          </button>
-        ) : (
-          <Link to="/login" className="no-underline">
-            <button className="w-[130px] bg-[#ff4141] text-white py-[10px] rounded-[5px]">
-              Login
-            </button>
-          </Link>
-        )}
+              {/* Subtle Scanning Text */}
+              <div className="absolute top-6 right-6 mix-blend-difference pointer-events-none">
+                <p className="text-[7px] font-mono text-white/50 leading-none tracking-tighter">SCAN_COORD: 40.7128° N</p>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: Functional Controls */}
+          <div className="lg:col-span-6 flex flex-col justify-center">
+            <header className="mb-8">
+              <h1 className="text-5xl font-light tracking-tighter uppercase mb-2">
+                {product?.name?.split(' ').map((word, i) => (
+                  <span key={i} className={i === 0 ? "font-black block text-6xl" : "opacity-60"}>{word} </span>
+                ))}
+              </h1>
+              <div className="flex items-center gap-6 mt-6">
+                <p className="text-4xl font-mono tracking-tighter">${product?.new_price}</p>
+                <div className="px-2 py-1 bg-red-600/10 border border-red-600/20 text-red-500 text-[10px] font-mono">
+                  -{Math.round(100 - (product?.new_price / product?.old_price * 100))}% OFF
+                </div>
+              </div>
+            </header>
+            {/* Size Selection: Minimal Underline Style */}
+            <div className="mb-12">
+              <h3 className="text-[9px] font-mono text-zinc-500 uppercase tracking-[0.4em] mb-6">Select_Module_Size</h3>
+              <div className="flex gap-8">
+                {["S", "M", "L", "XL"].map(size => (
+                  <button key={size} className="relative group pb-2">
+                    <span className="text-sm font-bold group-hover:text-red-500 transition-colors">{size}</span>
+                    <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-600 group-hover:w-full transition-all duration-300" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Bar */}
+            <div className="flex flex-col gap-4">
+              {localStorage.getItem("auth-token") ? (
+                <button
+                  onClick={() => addToCart(product?.id)}
+                  className="w-full py-4 bg-red-700 text-white text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all"
+                >
+                  Add_To_Manifest
+                </button>
+              ) : (
+                <Link to="/login">
+                  <button className="w-full py-4 border border-zinc-800 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-all">
+                    Login_Required
+                  </button>
+                </Link>
+              )}
+
+              <div className="flex justify-between items-center px-1">
+                <span className="text-[8px] font-mono text-zinc-600 uppercase">Encrypted_Checkout</span>
+                <span className="text-[8px] font-mono text-zinc-600 uppercase italic">Local_Time: {new Date().toLocaleTimeString()}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
 };
-
 export default ProductDisplay;

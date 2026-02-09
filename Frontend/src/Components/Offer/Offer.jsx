@@ -2,52 +2,57 @@ import exclusive_img from '../../Assets/exclusive_image.png'
 
 const Offer = () => {
   return (
-    <div className="w-[65%] h-[60vh] flex mx-auto px-[140px] mb-[150px]
-                bg-gradient-to-b from-[#fde1ff] to-[#e1ffea22]
-                max-[1280px]:px-[80px] max-[1280px]:mb-[120px]
-                max-[1024px]:px-[60px] max-[1024px]:mb-[100px]
-                max-[800px]:mt-[40px] max-[800px]:px-[40px] max-[800px]:mb-[90px]">
+    <div className="w-[90%] lg:w-[85%] max-w-[1400px] min-h-[500px] mx-auto mb-[150px] relative overflow-hidden rounded-3xl bg-[#0f0f0f] border border-white/5 shadow-2xl flex flex-col md:flex-row">
 
-      {/* Left Section */}
-      <div className="flex-1 flex flex-col justify-center">
-        <h1 className="text-[#171717] text-[60px] font-semibold
-                   max-[1280px]:text-[50px]
-                   max-[800px]:text-[40px]">
-          Exclusive
-        </h1>
+      {/* Background Stylized Elements */}
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-red-600/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-blue-600/5 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
-        <h1 className="text-[#171717] text-[60px] font-semibold
-                   max-[1280px]:text-[50px]
-                   max-[800px]:text-[40px]">
-          Offer For You
-        </h1>
+      {/* Left Content Section */}
+      <div className="flex-1 flex flex-col justify-center px-8 py-12 lg:px-20 z-10">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-[1px] bg-red-600"></div>
+          <span className="text-red-500 uppercase tracking-[0.4em] text-xs font-bold">
+            Limited Time
+          </span>
+        </div>
 
-        <p className="text-[#171717] text-[20px] font-semibold mt-0
-                  max-[1280px]:text-[22px] max-[1280px]:mt-[10px]
-                  max-[1024px]:text-[20px]
-                  max-[800px]:text-[20px]">
-          Only on Best Sellers Product
+        <h2 className="text-white text-5xl lg:text-7xl font-black italic uppercase leading-none">
+          Exclusive <br />
+          <span className="text-transparent stroke-text-white">Offer For You</span>
+        </h2>
+
+        <p className="text-gray-400 text-lg mt-6 max-w-sm font-light leading-relaxed tracking-wide">
+          Unlock access to our vault. Our best-selling silhouettes are now available with exclusive seasonal pricing.
         </p>
 
-        <button
-          className="w-[282px] h-[70px] rounded-full mt-[30px]
-                 bg-[#ff4141] text-white text-[22px] font-medium
-                 cursor-pointer
-                 max-[1280px]:w-[240px] max-[1280px]:h-[65px]
-                 max-[1280px]:mt-[25px] max-[1280px]:text-[20px]
-                 max-[1024px]:w-[200px] max-[1024px]:h-[55px]
-                 max-[1024px]:mt-[20px] max-[1024px]:text-[18px]
-                 max-[800px]:w-[180px] max-[800px]:h-[45px]
-                 max-[800px]:text-[16px]">
-          Shop Now
-        </button>
+        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <button className="px-10 py-4 bg-white text-black font-black uppercase tracking-widest text-sm hover:bg-red-600 hover:text-white transition-all duration-300 transform hover:-translate-y-1 active:scale-95">
+            Check Now
+          </button>
+          <p className="text-[10px] uppercase tracking-tighter text-gray-500 max-w-[120px]">
+            *Applied at checkout while stocks last
+          </p>
+        </div>
       </div>
 
-      {/* Right Section */}
-      <div className="flex-1 flex justify-end items-center pt-[50px]
-                  max-[800px]:hidden">
-        <img src={exclusive_img} alt="Exclusive Offer" />
+      {/* Right Section: Image with Depth */}
+      <div className="flex-1 relative flex justify-center items-end overflow-hidden pt-10 md:pt-0">
+        {/* Decorative Circle behind image */}
+        <div className="absolute w-[300px] h-[300px] border border-white/5 rounded-full bottom-[-50px]" />
+
+        <img
+          src={exclusive_img}
+          alt="Exclusive Offer"
+          className="relative z-10 w-[80%] md:w-full max-h-[500px] object-contain transition-transform duration-700 hover:scale-105"
+        />
       </div>
+
+      <style>{`
+        .stroke-text-white {
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+        }
+      `}</style>
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 const Loginsignup = () => {
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState("");
   const [state, setState] = useState("Login");
   const [formData, setFormData] = useState({
     username: "",
@@ -29,7 +30,7 @@ const Loginsignup = () => {
       window.location.replace("/")
     }
     else {
-      alert(responseData.errors)
+      setError(responseData.errors)
     }
   }
 
@@ -54,47 +55,63 @@ const Loginsignup = () => {
   }
 
   return (
-    <div className="w-full min-h-[80vh] bg-[#fce3fe] pt-[100px] max-[1280px]:pt-[50px] flex justify-center">
-      <div className="w-[580px] h-[600px] max-[1280px]:w-full max-[1280px]:max-w-[500px] max-[1280px]:max-h-[500px]
-                  bg-white px-[60px] py-[40px] max-[800px]:px-[30px] max-[800px]:py-[20px]">
+    <div className="min-h-screen bg-[#0b0b0b] flex flex-col lg:flex-row items-center justify-between px-[5%] lg:px-[10%] pt-20 pb-10 gap-16">
 
-        <h1 className="text-2xl font-semibold my-5 max-[1280px]:my-2.5 max-[800px]:text-xl">
-          {state}</h1>
-        <div className="flex flex-col gap-[30px] mt-[30px] max-[1280px]:gap-[20px] max-[1280px]:mt-[20px]">
-          {state === "Sign Up" &&
-            <input type="text" name='username' value={formData.username} onChange={changeHandler} placeholder='Your Name' className="w-full h-[72px] max-[1280px]:w-[93%] max-[1280px]:h-[65px] max-[800px]:h-[50px] px-5 rounded-md border border-[#888] text-xl outline-none" />}
-          <input name='email' value={formData.email} onChange={changeHandler} type="email" placeholder='Email Address' className="w-full h-[72px] max-[1280px]:w-[93%] max-[1280px]:h-[65px] max-[800px]:h-[50px] px-5 rounded-md border border-[#888] text-xl outline-none" />
-          <input name='password' value={formData.password} onChange={changeHandler} type="password" placeholder='Password' className="w-full h-[72px] max-[1280px]:w-[93%] max-[1280px]:h-[65px] max-[800px]:h-[50px] px-5 rounded-md border border-[#888] text-xl outline-none" />
+      {/* Left Side: Brand Message */}
+      <div className="flex-1 text-left space-y-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-600/20">
+          <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+          <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.2em]">Live Archive 2026</span>
         </div>
-        <button onClick={() => { state === "Login" ? login() : signup() }} className=' className="w-[580px] max-[1280px]:w-full h-[72px] max-[1280px]:h-[65px] max-[800px]:h-[50px] mt-[30px] max-[1280px]:mt-[20px] bg-[#ef1c1c] text-white text-2xl rounded-md cursor-pointer hover:opacity-90 transition"
-    >'>Continue</button>
-        <p className="mt-5 text-[#5c5c5c] text-xl max-[1280px]:text-lg font-medium">
-          {state === "Sign Up" ? (
-            <>
-              Already have an account?{" "}
-              <span
-                onClick={() => setState("Login")}
-                className="text-[#ef1c1c] font-semibold cursor-pointer"
-              >
-                Log in here
-              </span>
-            </>
-          ) : (
-            <>
-              Create an account?{" "}
-              <span
-                onClick={() => setState("Sign Up")}
-                className="text-[#ef1c1c] font-semibold cursor-pointer"
-              >
-                Click Here
-              </span>
-            </>
-          )}
+        <h1 className="text-white text-6xl md:text-8xl font-black uppercase italic leading-[0.8] tracking-tighter">
+          Unlock the <br /> <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Artifacts.</span>
+        </h1>
+        <p className="text-zinc-400 max-w-md text-sm md:text-base leading-relaxed tracking-wide uppercase font-light">
+          Join the digital collective to access curated utility assets and technical precision tools.
         </p>
-        <div className="flex items-center gap-5 mt-[25px] text-[#5c5c5c] text-xl max-[1280px]:text-lg font-medium">
-          <input type="checkbox" name='' id='' />
-          <p>By Continuing, i agree to the terms of use and privacy policy</p>
+      </div>
+      {/* Right Side: The Form Card */}
+      <div className="w-full max-w-[480px] bg-white p-8 md:p-12 rounded-3xl shadow-2xl shadow-red-600/10">
+        <h2 className="text-2xl font-black text-black uppercase italic mb-8 border-b-4 border-red-600 inline-block">
+          {state}
+        </h2>
+
+        <div className="space-y-4">
+          {state === "Sign Up" && (
+            <input name='username' value={formData.username} onChange={changeHandler} type="text" placeholder='Your Name' className="w-full h-14 px-5 bg-zinc-100 rounded-xl outline-none border-2 border-transparent focus:border-red-600 transition-all font-medium" />
+          )}
+          <input name='email' value={formData.email} onChange={changeHandler} type="email" placeholder='Email Address' className="w-full h-14 px-5 bg-zinc-100 rounded-xl outline-none border-2 border-transparent focus:border-red-600 transition-all font-medium" />
+          <div className='relative w-full'>
+            <input
+              name='password'
+              value={formData.password}
+              onChange={changeHandler}
+              type={passwordVisible ? "text" : "password"}
+              placeholder='Password'
+              className="w-full h-14 px-5 bg-zinc-100 rounded-xl outline-none border-2 border-transparent focus:border-red-600 transition-all font-medium" />
+            <span
+              onClick={() => setPasswordVisible(!passwordVisible)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600"
+            >
+              {passwordVisible ? "🙈" : "👁️"}
+            </span>
+          </div>
         </div>
+        {error && (
+          <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-xl">
+            {error}
+          </div>
+        )}
+        <button onClick={() => { state === "Login" ? login() : signup() }} className="w-full h-14 mt-8 bg-red-600 text-white font-black uppercase tracking-widest rounded-xl hover:bg-black transition-all transform hover:-translate-y-1">
+          Get Started
+        </button>
+
+        <p className="mt-6 text-zinc-500 text-xs font-bold text-center uppercase tracking-tighter">
+          {state === "Sign Up" ? "Already a member?" : "Need an account?"}{" "}
+          <span onClick={() => setState(state === "Sign Up" ? "Login" : "Sign Up")} className="text-red-600 cursor-pointer hover:underline">
+            {state === "Sign Up" ? "Log in here" : "Click Here"}
+          </span>
+        </p>
       </div>
     </div>
   )

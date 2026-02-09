@@ -2,32 +2,26 @@ import { Link } from "react-router-dom";
 
 const Item = (props) => {
   return (
-    <>
-      <div className="w-[240px] lg:w-[280px] overflow-hidden rounded-xl border shadow-sm mx-auto my-4">
-        <Link to={`/product/${props.id}`}>
-          {" "}
-          <div className="overflow-hidden rounded-lg">
-            <img src={props.img} alt="" onClick={window.scrollTo(0, 0)} className="mx-auto w-[180px] p-5 transition-transform duration-300 hover:scale-110"
-            />{" "}
-          </div>
-        </Link>
-        <div className="mt-3 px-3 sm:px-2">
-          <p className="text-sm sm:text-[15px] md:text-[16px] font-medium text-gray-700 line-clamp-2">
-            {props.name}
-          </p>
-
-          {/* Price */}
-          <div className="mt-2 flex items-center sm:gap-3 gap-2">
-            <span className="text-base sm:text-lg font-bold text-gray-900">
-              ${props.new_price}
-            </span>
-            <span className="text-xs sm:text-sm text-gray-400 line-through">
-              ${props.old_price}
-            </span>
+    <div className="group relative w-[300px] bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-2xl p-2.5 transition-all hover:bg-white/[0.06]">
+      <Link to={`/product/${props.id}`} className="block">
+        <div className="relative aspect-square rounded-xl bg-zinc-900/50 overflow-hidden flex items-center justify-center">
+          <img
+            src={props.img}
+            alt={props.name}
+            onClick={() => window.scrollTo(0, 0)}
+            className="w-3/4 object-contain transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute top-1.5 right-1.5 bg-white text-black px-2 py-0.5 rounded-full font-black text-[9px]">
+            ${props.new_price}
           </div>
         </div>
+      </Link>
+
+      <div className="mt-2 px-0.5">
+        <h3 className="text-white text-[11px] font-medium tracking-tight line-clamp-1 truncate">{props.name}</h3>
+        <p className="text-[9px] text-zinc-600 line-through font-mono tracking-tighter">${props.old_price}</p>
       </div>
-    </>
+    </div>
   );
 };
 

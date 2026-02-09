@@ -1,48 +1,64 @@
-import { useContext } from 'react'
-import dp_icon from '../Assets/dropdown_icon.png'
-import Item from '../Components/Items/Item'
-import { ShopContext } from '../Context/ShopContext'
+import { useContext } from 'react';
+import Item from '../Components/Items/Item';
+import { ShopContext } from '../Context/ShopContext';
 
 const Shopcategory = (props) => {
   const { all_product } = useContext(ShopContext);
-  return (
-    <div className='shopcategory'>
-      <img className="block mx-auto my-[30px] w-[82%] xl:my-[20px] xl:w-[90%] md:w-[95%]"
-        src={props.banner} alt="" />
-      <div className="flex items-center justify-between mx-auto w-[90%]">
-        <p className="text-sm xl:text-xs">
-          <span className="text-[20px] font-semibold">Total </span>
-          {all_product.length} products
-        </p>
 
-        <div className="flex items-center gap-2 rounded-full border border-[#888] px-5 py-2 xl:px-2 xl:py-1">
-          Sort by <img src={dp_icon} alt="" />
+  return (
+    <div className="bg-[#0b0b0b] min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 py-24 flex flex-col md:flex-row items-baseline justify-between gap-6 border-b border-white/10">
+        <div className="space-y-2">
+          <h1 className="text-white text-6xl md:text-8xl font-bold tracking-tighter uppercase">
+            {props.category}
+          </h1>
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-[1px] bg-red-600"></span>
+            <p className="text-zinc-500 text-[10px] font-mono uppercase tracking-[0.3em]">
+              Archive Collection
+            </p>
+          </div>
         </div>
+
+        <p className="text-zinc-400 text-[11px] font-medium uppercase tracking-widest border border-white/10 px-4 py-2 rounded-full">
+          {all_product.filter(p => p.category === props.category).length} Units Found
+        </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        {all_product.map((p, i) => {
-          if (props.category === p.category) {
-            return (
-              <div key={i} >
-                <Item
-                  id={p.id}
-                  img={p.image}
-                  name={p.name}
-                  new_price={p.new_price}
-                  old_price={p.old_price}
-                />
-              </div>
-            )
-          }
-          else {
+      {all_product.filter(p => p.category === props.category).length === 0 && (
+        <div className="flex flex-col items-center justify-center min-h-[60vh] border border-dashed border-white/10 rounded-lg mx-auto w-[90%] my-12">
+          <h1 className="text-white text-4xl font-black uppercase italic tracking-tighter">
+            Coming Soon
+          </h1>
+        </div>
+      )}
+      {/* Product Grid - Using a 3-column masonry-style feel */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20 w-[90%] mx-auto mt-6" >
+        {
+          all_product.map((p, i) => {
+            if (props.category === p.category) {
+              // Added a slight stagger effect to the grid
+              return (
+                <div key={i} className={`group relative ${i % 2 !== 0 ? 'lg:mt-16' : ''}`}>
+                  <Item
+                    id={p.id}
+                    img={p.image}
+                    name={p.name}
+                    new_price={p.new_price}
+                    old_price={p.old_price}
+                  />
+                </div>
+              );
+            }
             return null;
-          }
-        })}
-      </div>
-      <div className="mx-auto my-[150px] flex items-center justify-center h-[69px] w-[233px]cursor-pointer rounded-full bg-[#ededed] text-[18px] font-medium text-[#787878] xl:my-[100px] xl:h-[60px] xl:w-[200px] xl:text-[16px] md:my-[60px] md:h-[40px] md:w-[150px] md:text-[13px]">
-        Explore More
-      </div>
-    </div>
+          })
+        }
+      </div >
+      <style>{`
+        .stroke-text-white {
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+        }
+      `}</style>
+    </div >
   )
 }
 
